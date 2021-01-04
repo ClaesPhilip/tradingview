@@ -3,9 +3,13 @@ import thunk from 'redux-thunk';
 import { composeWithDevTools } from 'redux-devtools-extension';
 
 import authReducer from './reducers/authReducer';
+import StocksReduder from './reducers/StocksReducer';
+import AlertReducer from './reducers/AlertReducer';
 
 const rootReducer = combineReducers({
-  auth: authReducer
+  auth: authReducer,
+  Stocks: StocksReduder,
+  Alert: AlertReducer
 });
 
 const store = createStore(

@@ -63,3 +63,44 @@ export interface User {
   }
   
   export type AuthAction = SetUserAction | SetLoadingAction | SignOutAction | SetErrorAction | NeedVerificationAction | SetSuccessAction;
+
+
+
+
+
+
+// export const GET_STOCKS = "GET_STOCKS";
+// export const SET_ALERT = 'SET_ALERT';
+
+// export interface StocksData {
+//     id: string;
+//     name: string;
+//     current_price: number;
+//     symbol: string;
+//     image: string;
+//     market_cap: number;
+//     price_change_percentage_24h: number;
+//     total_volume: number;
+// }
+
+// export interface StocksState {
+//     data: StocksData | null;
+//     loading: boolean;
+//     error: string;
+// }
+
+// interface GetStocksAction {
+//     type: typeof GET_STOCKS;
+//     payload: StocksData;
+// }
+
+// export interface AlertAction {
+//   type: typeof SET_ALERT;
+//   payload: string;
+// }
+
+// export interface AlertState {
+//   message: string;
+// }
+
+// export type StocksAction = GetStocksAction;
