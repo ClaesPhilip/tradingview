@@ -18,6 +18,7 @@ interface ICrypto {
   total_volume: number;
   symbol: string;
   price_change_percentage_24h: number;
+  price_change_percentage_7d_in_currency: string;
 }
 
 const defaultProps:ICrypto[] = [];
@@ -30,7 +31,7 @@ const CryptoCurrency: React.FC = () => {
 
   React.useEffect(() => {
     axios
-      .get<ICrypto[]>("https://api.coingecko.com/api/v3/coins/markets?vs_currency=eur&order=market_cap_desc&per_page=100&page=1&sparkline=false")
+      .get<ICrypto[]>("https://api.coingecko.com/api/v3/coins/markets?vs_currency=eur&order=market_cap_desc&per_page=100&page=1&sparkline=false&price_change_percentage=7d")
       .then(response => {
         setCryptos(response.data);
         setLoading(false);
@@ -62,6 +63,9 @@ const CryptoCurrency: React.FC = () => {
       <p>{crypto.current_price}</p>
       <p>{crypto.symbol}</p>
       <img src={crypto.image} alt="image" />
+      <a href={crypto.id}>
+        <img src={crypto.price_change_percentage_7d_in_currency} alt={crypto.id} />
+      </a>
      </li>
    ))}
   </ul>
