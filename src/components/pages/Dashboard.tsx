@@ -6,6 +6,8 @@ import { setSuccess } from '../../store/actions/authActions';
 import { RootState } from '../../store';
 import { Link } from 'react-router-dom';
 
+import '../../css/Dashboard.css';
+
 import axios from "axios";
 
 interface ICrypto {
@@ -53,39 +55,33 @@ const Dashboard: React.FC = () => {
       });
   }, []);
 
-  // const handleChange = (e: { target: { value: string; }; }) => {
-  //   setSearch(e.target.value);
-  // };
-
-  // const filteredCoins = crypto.filter(crypto =>
-  //   crypto.name.toLowerCase().includes(search.toLowerCase())
-  // );
-
   return (
-    <div className="App">
-
+    <div className='dashboard-home'>
+      
     {needVerification && <Message type="success" msg="Please verify your email address." />}
       <h1 className="is-size-1">Welcome {user?.firstName}</h1>
         <Link to='/test'>TEST ME</Link>
 
-        <ul className="posts">
-        <input type="text" value={search} onChange={(e) => setSearch(e.target.value)}></input>
-         {crypto.map((crypto) => {
-             if (search === "" || crypto.name.toLowerCase().includes(search.toLowerCase())) {
-                 return (
-                     <li key={crypto.id}>
-                         <h3>{crypto.id}</h3>
-                         <p>{crypto.current_price}</p>
-                         <p>{crypto.symbol}</p>
-                         <img src={crypto.image} alt="image" />
-                     </li>
-                 );
-             }
-             return null; }
-         )}
-     </ul>
-  {error && <p className="error">{error}</p>}
-</div>
+        {/* <div className="container"> */}
+          <h1 className='coin-text'>Search a currency</h1>
+              <input className='coin-input' placeholder='Search' type="text" value={search} onChange={(e) => setSearch(e.target.value)}></input>
+                <div className="coin-container">
+                  <ul className="">
+                    {crypto.map((crypto) => {
+                    if (search === "" || crypto.name.toLowerCase().includes(search.toLowerCase())) {
+                      return (
+                        <li className="coin-items" key={crypto.id}>
+                          <img src={crypto.image} alt="image" />
+                          <h3>{crypto.id}</h3>
+                          <p className=''>{crypto.symbol}</p>
+                          <p className=''>{crypto.current_price} SEK</p>
+                        </li>
+                    );}})}
+                  </ul>
+                </div>
+        {/* </div> */}
+      {error && <p className="error">{error}</p>}
+  </div>
   )
 }
 
