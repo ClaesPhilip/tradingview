@@ -23,11 +23,19 @@ interface ICrypto {
 
 const defaultProps:ICrypto[] = [];
 
-const CryptoCurrency: React.FC = () => {
+const Dashboard: React.FC = () => {
+  const { user, needVerification, success } = useSelector((state: RootState) => state.auth);
+  const dispatch = useDispatch();
   const [crypto, setCryptos]: [ICrypto[], (posts: ICrypto[]) => void] = React.useState(defaultProps);
   const [loading, setLoading]: [boolean, (loading: boolean) => void] = React.useState<boolean>(true);
   const [error, setError]: [string, (error: string) => void] = React.useState("");
-  const [search, setSearch]: [string, (error: string) => void] = React.useState("");
+  const [search, setSearch]: [string, (search: string) => void] = React.useState("");
+  
+  useEffect(() => {
+    if(success) {
+      dispatch(setSuccess(''));
+    }
+  }, [success, dispatch]);
 
   React.useEffect(() => {
     axios
@@ -45,36 +53,43 @@ const CryptoCurrency: React.FC = () => {
       });
   }, []);
 
-  const handleChange = (e: { target: { value: string; }; }) => {
-    setSearch(e.target.value);
-  };
+  // const handleChange = (e: { target: { value: string; }; }) => {
+  //   setSearch(e.target.value);
+  // };
 
-  const filteredCoins = crypto.filter(crypto =>
-    crypto.name.toLowerCase().includes(search.toLowerCase())
-  );
+  // const filteredCoins = crypto.filter(crypto =>
+  //   crypto.name.toLowerCase().includes(search.toLowerCase())
+  // );
 
   return (
     <div className="App">
-  <ul className="posts">
-    <input type="text" onChange={handleChange}></input>
-    {crypto.map((crypto) => (
-     <li key={crypto.id}>
-      <h3>{crypto.id}</h3>
-      <p>{crypto.current_price}</p>
-      <p>{crypto.symbol}</p>
-      <img src={crypto.image} alt="image" />
-      <a href={crypto.id}>
-        <img src={crypto.price_change_percentage_7d_in_currency} alt={crypto.id} />
-      </a>
-     </li>
-   ))}
-  </ul>
+
+    {needVerification && <Message type="success" msg="Please verify your email address." />}
+      <h1 className="is-size-1">Welcome {user?.firstName}</h1>
+        <Link to='/test'>TEST ME</Link>
+
+        <ul className="posts">
+        <input type="text" value={search} onChange={(e) => setSearch(e.target.value)}></input>
+         {crypto.map((crypto) => {
+             if (search === "" || crypto.name.toLowerCase().includes(search.toLowerCase())) {
+                 return (
+                     <li key={crypto.id}>
+                         <h3>{crypto.id}</h3>
+                         <p>{crypto.current_price}</p>
+                         <p>{crypto.symbol}</p>
+                         <img src={crypto.image} alt="image" />
+                     </li>
+                 );
+             }
+             return null; }
+         )}
+     </ul>
   {error && <p className="error">{error}</p>}
 </div>
   )
 }
 
-export default CryptoCurrency;
+export default Dashboard;
 
 
 
