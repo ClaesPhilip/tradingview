@@ -60,6 +60,8 @@ const CryptoCurrency: React.FC = () => {
      <li key={crypto.id}>
       <h3>{crypto.id}</h3>
       <p>{crypto.current_price}</p>
+      <p>{crypto.symbol}</p>
+      <img src={crypto.image} alt="image" />
      </li>
    ))}
   </ul>
