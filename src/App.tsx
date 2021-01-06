@@ -16,6 +16,7 @@ import firebase from './firebase/config';
 import { getUserById, setLoading, setNeedVerification } from './store/actions/authActions';
 import { RootState } from './store';
 import Test from './components/pages/test';
+import Cryptocurrency from './components/crypto';
 
 const App: FC = () => {
   const dispatch = useDispatch();
@@ -54,6 +55,7 @@ const App: FC = () => {
         <PublicRoute path="/forgot-password" component={ForgotPassword} exact />
         <PrivateRoute path="/dashboard" component={Dashboard} exact />
         <PrivateRoute path="/test" component={Test} exact />
+        <PrivateRoute path="/crypto" component={Cryptocurrency} exact />
       </Switch>
     </BrowserRouter>
   );
