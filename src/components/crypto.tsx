@@ -43,48 +43,41 @@ const Cryptocurrency: React.FC = () => {
   }, []);
 
   return (
-    <div className="crypto-container">
-        
-        <div className="crypto-row">
-                <div className="crypto-coins">
-                    <div className="crypto-search-header">
-                        <h1>100 matchningar</h1>
-                        <input placeholder='Search' type="text" value={search} onChange={(e) => setSearch(e.target.value)}></input>
-                    </div>
-                  <ul className="crypto-ul">
-                        <div>
-                            <ul>
-                                <li className="crypto-header">
-                                    <h5>Coin</h5>
-                                    <h5>Price</h5>
-                                </li>
-                            </ul>
-                        </div>
-                    {crypto.map((crypto) => {
-                      if (search === "" || crypto.name.toLowerCase().includes(search.toLowerCase())) {
-                        return (
-                            <div key={crypto.id} className="crypto-list">
-                                    <div className="crypto-image">
-                                        <img src={crypto.image} alt="image" />
-                                    </div>
-                                <li  className="crypto-list">
-                                    <div className="crypto-id-symbol">
-                                        <p>{crypto.symbol.toLocaleUpperCase()}</p>
-                                        <h3>{crypto.id.toLocaleUpperCase()}</h3>
-                                    </div>
-                                    <p>{crypto.current_price} SEK</p>
-                                </li>
-                            </div>
-                    );}})}
-                  </ul>
-                </div>
-        </div>
+    <table className="content-table">    
+      <tr className="crypto-search-header">
+          <td>100 matchningar</td>
+          <td><input placeholder='Search' type="text" value={search} onChange={(e) => setSearch(e.target.value)}></input></td>
+      </tr>
+    <thead>
+      <tr>
+        <th>Coin</th>
+        <th>Price</th>
+        <th>Volume</th>
+        <th>Price</th>
+      </tr>
+    </thead>
+    <tbody>
+      {crypto.map((crypto) => {
+      if (search === "" || crypto.name.toLowerCase().includes(search.toLowerCase())) {
+        return (
+          <tr key={crypto.id} >
+            <td className="crypto-image">
+              <img src={crypto.image} alt="image" />
+            </td>
+            <td>{crypto.symbol.toLocaleUpperCase()}</td>
+            <td>{crypto.id.toLocaleUpperCase()}</td>
+            <td>{crypto.current_price} SEK</td>
+          </tr>
+      );}})}
+    </tbody>
       {error && <p className="error">{error}</p>}
-    </div>
+</table>
   )
 }
 
 export default Cryptocurrency;
+
+
 
 
 
