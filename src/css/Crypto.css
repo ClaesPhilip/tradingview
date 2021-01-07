@@ -105,6 +105,24 @@ img {
 
 /* THEAD ---------------------------- */
 
+
+.crypto-content {
+  margin-left: auto;
+  margin-right: auto;
+  border-collapse: collapse;
+  font-size: 0.9em;
+  min-width: 400px;
+  border-radius: 30px 30px 0 0;
+  overflow: hidden;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+  width: 1300px;
+  margin-top: 40px;
+}
+
+.crypto-matches {
+  width: 10px;
+}
+
 .crypto-image {
     align-items: flex-start;
     align-content: center ;
@@ -117,47 +135,41 @@ img {
     height: 20px;
     width: 20px;
     margin-right: 10px;
-  }
+}
 
-  .content-table {
-    margin-left: auto;
-    margin-right: auto;
-    border-collapse: collapse;
-    margin: 25px 0;
-    font-size: 0.9em;
-    min-width: 400px;
-    border-radius: 5px 5px 0 0;
-    overflow: hidden;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
-    width: 1600px;
-  }
-  
-  .content-table thead tr {
-    background-color: #009879;
-    color: #ffffff;
+.crypto-content thead tr {
+    border-bottom: 1px solid rgba(68, 67, 67, 0.295);
+    color: black;
     text-align: left;
     font-weight: bold;
-    width: 1600px;
   }
   
-  .content-table th,
-  .content-table td {
+  .crypto-content th,
+  .crypto-content td {
     padding: 12px 15px;
   }
   
-  .content-table tbody tr {
+  .crypto-content tbody tr {
     border-bottom: 1px solid #dddddd;
   }
   
-  .content-table tbody tr:nth-of-type(even) {
+  .crypto-content tbody tr:nth-of-type(even) {
     background-color: #f3f3f3;
   }
   
-  .content-table tbody tr:last-of-type {
+  .crypto-content tbody tr:last-of-type {
     
   }
   
-  .content-table tbody tr.active-row {
+  .crypto-content tbody tr.active-row {
     font-weight: bold;
     color: #009879;
+  }
+
+
+
+
+  .japp {
+    margin-left: auto;
+    margin-right: auto;
   }

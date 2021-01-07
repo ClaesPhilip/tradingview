@@ -1,8 +1,17 @@
 import React, { FC, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 
 import '../css/Crypto.css';
 
 import axios from 'axios';
+import { makeStyles } from '@material-ui/core/styles';
+import Table from '@material-ui/core/Table';
+import TableBody from '@material-ui/core/TableBody';
+import TableCell from '@material-ui/core/TableCell';
+import TableContainer from '@material-ui/core/TableContainer';
+import TableHead from '@material-ui/core/TableHead';
+import TableRow from '@material-ui/core/TableRow';
+import Paper from '@material-ui/core/Paper';
 
 interface ICrypto {
   userId: number;
@@ -42,42 +51,122 @@ const Cryptocurrency: React.FC = () => {
       });
   }, []);
 
+  const useStyles = makeStyles({
+    table: {
+      minWidth: 650,
+      maxWidth: 1300,
+      marginRight: "auto",
+      marginLeft: "auto",
+      marginTop: "30px",
+      marginBottom: "30px",
+    },
+  });
+
+  const classes = useStyles();
   return (
-    <table className="content-table">    
-      <tr className="crypto-search-header">
-          <td>100 matchningar</td>
-          <td><input placeholder='Search' type="text" value={search} onChange={(e) => setSearch(e.target.value)}></input></td>
-      </tr>
-    <thead>
-      <tr>
-        <th>Coin</th>
-        <th>Price</th>
-        <th>Volume</th>
-        <th>Price</th>
-      </tr>
-    </thead>
-    <tbody>
-      {crypto.map((crypto) => {
-      if (search === "" || crypto.name.toLowerCase().includes(search.toLowerCase())) {
-        return (
-          <tr key={crypto.id} >
-            <td className="crypto-image">
-              <img src={crypto.image} alt="image" />
+    
+  <div className="japp">
+    <div >
+
+    <TableContainer component={Paper}>
+      <Table className={classes.table} aria-label="simple table">
+        <TableHead>
+            <p className="crypto-matches">100 matches</p>
+            <input className="" placeholder='Search' type="text" value={search} onChange={(e) => setSearch(e.target.value)}></input>
+          <TableRow>
+            <TableCell>Coin</TableCell>
+            <TableCell>Cymbol</TableCell>
+            <TableCell align="right">Price</TableCell>
+            <TableCell align="right">Volume</TableCell>
+            <TableCell align="right">Market cap</TableCell>
+            <TableCell align="right">24h</TableCell>
+            <TableCell align="right">7d</TableCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          {crypto.map((crypto) => {
+            if (search === "" || crypto.name.toLowerCase().includes(search.toLowerCase())) {
+              return (
+            <TableRow key={crypto.id}>
+              <TableCell component="th" scope="row">
+                <img src={crypto.image} alt="image" />
+                <Link to="/cryptoInfo">{crypto.name.toLocaleUpperCase()}</Link>
+              </TableCell>
+              <TableCell align="right">{crypto.symbol.toLocaleUpperCase()}</TableCell>
+              <TableCell align="right">{crypto.current_price} SEK</TableCell>
+              <TableCell align="right">{crypto.total_volume} SEK</TableCell>
+              <TableCell align="right">{crypto.market_cap} SEK</TableCell>
+              <TableCell align="right">{crypto.price_change_percentage_24h} %</TableCell>
+              <TableCell align="right">{crypto.price_change_percentage_7d_in_currency} %</TableCell>
+            </TableRow>
+          )}})}
+        </TableBody>
+        {error && <p className="error">{error}</p>}
+      </Table>
+    </TableContainer>
+
+
+
+
+
+
+
+      {/* <table className="crypto-content">    
+        <thead>
+          <tr className="jfjfj">
+            <td className="hello">
+              Kryptotillgångar som innehåller Bitcoins
+              Bitcoin är världens mest omsatta kryptovaluta 
+              som representerar en stor del av kryptovaluta 
+              marknaden. Det var den första kryptovalutan som 
+              introducerades för allmänheten och har därför mest 
+              utvecklad infrastruktur. Den är ofta ansedd att vara 
+              en trendsättare i kryptovaluta-världen. Bitcoin skapades 
+              som en alternativ tillgångsklass och kan användas i 
+              portföljen som del av en riskstrategi, särskilt under 
+              de turbulenta marknader.
             </td>
-            <td>{crypto.symbol.toLocaleUpperCase()}</td>
-            <td>{crypto.id.toLocaleUpperCase()}</td>
-            <td>{crypto.current_price} SEK</td>
           </tr>
-      );}})}
-    </tbody>
-      {error && <p className="error">{error}</p>}
-</table>
+          <tr className="crypto-search-header">
+            <td className="crypto-matches">100 matches</td>
+            <td><input className="" placeholder='Search' type="text" value={search} onChange={(e) => setSearch(e.target.value)}></input></td>
+          </tr>
+          <tr>
+            <th>Coin</th>
+            <th>Name</th>
+            <th>Price</th>
+            <th>Volume</th>
+            <th>Market cap</th>
+            <th>24h</th>
+            <th>7d</th>
+          </tr>
+        </thead>
+        <tbody>
+          {crypto.map((crypto) => {
+          if (search === "" || crypto.name.toLowerCase().includes(search.toLowerCase())) {
+          return (
+            <tr key={crypto.id} >
+              <td className="crypto-image">
+                <img src={crypto.image} alt="image" />
+                <tr><Link to="/cryptoInfo">{crypto.symbol.toLocaleUpperCase()}</Link></tr>
+              </td>
+              <td>{crypto.id.toLocaleUpperCase()}</td>
+              <td>{crypto.current_price} SEK</td>
+              <td>{crypto.total_volume} SEK</td>
+              <td>{crypto.market_cap} SEK</td>
+              <td>{crypto.price_change_percentage_24h} SEK</td>
+              <td>{crypto.price_change_percentage_7d_in_currency} SEK</td>
+            </tr>
+          );}})}
+        </tbody>
+        {error && <p className="error">{error}</p>}
+      </table> */}
+    </div>
+  </div>
   )
 }
 
 export default Cryptocurrency;
-
-
 
 
 
