@@ -5,7 +5,6 @@ import Message from '../UI/Message';
 import { setSuccess } from '../../store/actions/authActions';
 import { RootState } from '../../store';
 import { Link } from 'react-router-dom';
-// import Cryptocurrency from '../crypto';
 
 import '../../css/Dashboard.css';
 

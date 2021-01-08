@@ -1,4 +1,4 @@
-import React, { FC, useEffect } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 
 import '../css/Crypto.css';
@@ -13,7 +13,7 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 
-interface ICrypto {
+export interface ICrypto {
   userId: number;
   id: string;
   name: string;
@@ -29,18 +29,18 @@ interface ICrypto {
 const defaultProps:ICrypto[] = [];
 
 const Cryptocurrency: React.FC = () => {
-  const [crypto, setCryptos]: [ICrypto[], (posts: ICrypto[]) => void] = React.useState(defaultProps);
+  const [cryptos, setCryptos]: [ICrypto[], (posts: ICrypto[]) => void] = React.useState(defaultProps);
   const [loading, setLoading]: [boolean, (loading: boolean) => void] = React.useState<boolean>(true);
   const [error, setError]: [string, (error: string) => void] = React.useState("");
   const [search, setSearch]: [string, (search: string) => void] = React.useState("");
-  const [show, toggleShow] = React.useState(true);
 
   React.useEffect(() => {
     axios
-      .get<ICrypto[]>("https://api.coingecko.com/api/v3/coins/markets?vs_currency=eur&order=market_cap_desc&per_page=100&page=1&sparkline=false&price_change_percentage=7d")
+      .get<ICrypto[]>("https://api.coingecko.com/api/v3/coins/markets?vs_currency=sek&order=market_cap_desc&per_page=100&page=1&sparkline=false&price_change_percentage=7d")
       .then(response => {
         setCryptos(response.data);
         setLoading(false);
+        console.log(response.data);
       }).catch(ex => {
         const error =
         ex.response.status === 404
@@ -63,11 +63,10 @@ const Cryptocurrency: React.FC = () => {
   });
 
   const classes = useStyles();
+
   return (
-    
   <div className="japp">
     <div >
-
     <TableContainer component={Paper}>
       <Table className={classes.table} aria-label="simple table">
         <TableHead>
@@ -84,83 +83,26 @@ const Cryptocurrency: React.FC = () => {
           </TableRow>
         </TableHead>
         <TableBody>
-          {crypto.map((crypto) => {
-            if (search === "" || crypto.name.toLowerCase().includes(search.toLowerCase())) {
+          {cryptos.map((cryptos) => {
+            if (search === "" || cryptos.name.toLowerCase().includes(search.toLowerCase())) {
               return (
-            <TableRow key={crypto.id}>
+            <TableRow key={cryptos.id}>
               <TableCell component="th" scope="row">
-                <img src={crypto.image} alt="image" />
-                <Link to="/cryptoInfo">{crypto.name.toLocaleUpperCase()}</Link>
+                <img src={cryptos.image} alt="image" />
+                <Link to={`/crypto/${cryptos.id}`}>{cryptos.name.toLocaleUpperCase()}</Link>
               </TableCell>
-              <TableCell align="right">{crypto.symbol.toLocaleUpperCase()}</TableCell>
-              <TableCell align="right">{crypto.current_price} SEK</TableCell>
-              <TableCell align="right">{crypto.total_volume} SEK</TableCell>
-              <TableCell align="right">{crypto.market_cap} SEK</TableCell>
-              <TableCell align="right">{crypto.price_change_percentage_24h} %</TableCell>
-              <TableCell align="right">{crypto.price_change_percentage_7d_in_currency} %</TableCell>
+              <TableCell align="right">{cryptos.symbol.toLocaleUpperCase()}</TableCell>
+              <TableCell align="right">{cryptos.current_price} SEK</TableCell>
+              <TableCell align="right">{cryptos.total_volume} SEK</TableCell>
+              <TableCell align="right">{cryptos.market_cap} SEK</TableCell>
+              <TableCell align="right">{cryptos.price_change_percentage_24h} %</TableCell>
+              <TableCell align="right">{cryptos.price_change_percentage_7d_in_currency} %</TableCell>
             </TableRow>
           )}})}
         </TableBody>
         {error && <p className="error">{error}</p>}
       </Table>
     </TableContainer>
-
-
-
-
-
-
-
-      {/* <table className="crypto-content">    
-        <thead>
-          <tr className="jfjfj">
-            <td className="hello">
-              Kryptotillgångar som innehåller Bitcoins
-              Bitcoin är världens mest omsatta kryptovaluta 
-              som representerar en stor del av kryptovaluta 
-              marknaden. Det var den första kryptovalutan som 
-              introducerades för allmänheten och har därför mest 
-              utvecklad infrastruktur. Den är ofta ansedd att vara 
-              en trendsättare i kryptovaluta-världen. Bitcoin skapades 
-              som en alternativ tillgångsklass och kan användas i 
-              portföljen som del av en riskstrategi, särskilt under 
-              de turbulenta marknader.
-            </td>
-          </tr>
-          <tr className="crypto-search-header">
-            <td className="crypto-matches">100 matches</td>
-            <td><input className="" placeholder='Search' type="text" value={search} onChange={(e) => setSearch(e.target.value)}></input></td>
-          </tr>
-          <tr>
-            <th>Coin</th>
-            <th>Name</th>
-            <th>Price</th>
-            <th>Volume</th>
-            <th>Market cap</th>
-            <th>24h</th>
-            <th>7d</th>
-          </tr>
-        </thead>
-        <tbody>
-          {crypto.map((crypto) => {
-          if (search === "" || crypto.name.toLowerCase().includes(search.toLowerCase())) {
-          return (
-            <tr key={crypto.id} >
-              <td className="crypto-image">
-                <img src={crypto.image} alt="image" />
-                <tr><Link to="/cryptoInfo">{crypto.symbol.toLocaleUpperCase()}</Link></tr>
-              </td>
-              <td>{crypto.id.toLocaleUpperCase()}</td>
-              <td>{crypto.current_price} SEK</td>
-              <td>{crypto.total_volume} SEK</td>
-              <td>{crypto.market_cap} SEK</td>
-              <td>{crypto.price_change_percentage_24h} SEK</td>
-              <td>{crypto.price_change_percentage_7d_in_currency} SEK</td>
-            </tr>
-          );}})}
-        </tbody>
-        {error && <p className="error">{error}</p>}
-      </table> */}
     </div>
   </div>
   )
