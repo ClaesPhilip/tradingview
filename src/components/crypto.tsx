@@ -66,7 +66,6 @@ const Cryptocurrency: React.FC = () => {
 
   return (
   <div className="japp">
-    <div >
     <TableContainer component={Paper}>
       <Table className={classes.table} aria-label="simple table">
         <TableHead>
@@ -103,7 +102,6 @@ const Cryptocurrency: React.FC = () => {
         {error && <p className="error">{error}</p>}
       </Table>
     </TableContainer>
-    </div>
   </div>
   )
 }
