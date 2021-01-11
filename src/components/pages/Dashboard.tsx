@@ -25,6 +25,8 @@ const Dashboard: React.FC = () => {
         <Link to='/test'>TEST ME</Link>
 
         <Link to="/crypto">Cryptocurrency</Link>
+
+        <Link to="/news">News</Link>
   </div>
   )
 }

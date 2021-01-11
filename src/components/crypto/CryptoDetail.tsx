@@ -1,6 +1,6 @@
 import React from 'react';
 
-import '../css/Crypto.css';
+import './Crypto.css';
 
 import axios from 'axios';
 

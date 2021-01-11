@@ -16,8 +16,9 @@ import firebase from './firebase/config';
 import { getUserById, setLoading, setNeedVerification } from './store/actions/authActions';
 import { RootState } from './store';
 import Test from './components/pages/test';
-import Cryptocurrency from './components/crypto';
-import CryptoDetail from './components/CryptoDetail';
+import Cryptocurrency from './components/crypto/crypto';
+import CryptoDetail from './components/crypto/CryptoDetail';
+import News from './components/news/News';
 
 const App: FC = () => {
   const dispatch = useDispatch();
@@ -58,6 +59,7 @@ const App: FC = () => {
         <PrivateRoute path="/test" component={Test} exact />
         <PrivateRoute path="/crypto" component={Cryptocurrency} exact />
         <PrivateRoute path="/crypto/:id" component={CryptoDetail} />
+        <PrivateRoute path="/news" component={News} />
       </Switch>
     </BrowserRouter>
   );

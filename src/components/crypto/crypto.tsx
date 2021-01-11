@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import '../css/Crypto.css';
+import './Crypto.css';
 
 import axios from 'axios';
 import { makeStyles } from '@material-ui/core/styles';
