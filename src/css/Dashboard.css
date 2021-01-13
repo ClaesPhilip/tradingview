@@ -1,3 +1,35 @@
 .dashboard-home {
   padding: 1em;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.diven {
+  display: flex;
+  justify-content: center;
+}
+
+.ulBox {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  align-content: center;
+  height: 400px;
+}
+
+.list {
+  text-align: center;
+  padding: 50px;
+  width: 40%;
+}
+
+@media screen and (max-width: 750px) {
+  .ulBox {
+    flex-direction: column;
+  }
+
+  .list {
+    padding: 0px;
+    margin-bottom: 70px;
+  }
 }

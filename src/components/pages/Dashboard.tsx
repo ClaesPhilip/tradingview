@@ -7,26 +7,34 @@ import { RootState } from '../../store';
 import { Link } from 'react-router-dom';
 
 import '../../css/Dashboard.css';
+import Button from '../UI/Button';
 
 const Dashboard: React.FC = () => {
   const { user, needVerification, success } = useSelector((state: RootState) => state.auth);
   const dispatch = useDispatch();
+  const [open, setOpen] = React.useState(false);
   
   useEffect(() => {
     if(success) {
       dispatch(setSuccess(''));
     }
   }, [success, dispatch]);
-
+  
   return (
     <div className='dashboard-home'>
-    {needVerification && <Message type="success" msg="Please verify your email address." />}
+          {needVerification && <Message type="success" msg="Please verify your email address."/>}
       <h1 className="is-size-1">Welcome {user?.firstName}</h1>
-        <Link to='/test'>TEST ME</Link>
 
-        <Link to="/crypto">Cryptocurrency</Link>
+    
 
-        <Link to="/news">News</Link>
+          <ul className="ulBox">
+            <li className="list"><Link to='/test'>TEST ME</Link></li>
+            <li className="list"><Link to="/crypto">Cryptocurrency</Link></li>
+            <li className="list"><Link to="/news">News</Link></li>
+            <li className="list"><Link to='/test'>Lek</Link></li>
+          </ul>
+
+   
   </div>
   )
 }
