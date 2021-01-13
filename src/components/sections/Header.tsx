@@ -25,7 +25,7 @@ const Header: FC = () => {
         <div className="navbar-end">
           <div className="navbar-items">
             {!authenticated ? <div className="buttons">
-                <Button text="Sign up" onClick={() => history.push('/signup')} className="is-primary" />
+                <Button text="Sign up" onClick={() => history.push('/signup')} />
                 <Button text="Sign in" onClick={() => history.push('/signin')} />
               </div>
               :
