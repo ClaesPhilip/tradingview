@@ -1,7 +1,7 @@
 import { FC } from 'react';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../store';
-import '../sections/Header.css';
+import '../sections/Header.scss';
 
 
 const Test: FC = () => {

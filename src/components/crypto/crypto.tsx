@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import './Crypto.css';
+import './Crypto.scss';
 
 import axios from 'axios';
 import { makeStyles } from '@material-ui/core/styles';
@@ -96,6 +96,7 @@ const Cryptocurrency: React.FC = () => {
               <TableCell align="right">{cryptos.market_cap} SEK</TableCell>
               <TableCell align="right">{cryptos.price_change_percentage_24h} %</TableCell>
               <TableCell align="right">{cryptos.price_change_percentage_7d_in_currency} %</TableCell>
+              <div className="hej">efwefwfwofhowef</div>
             </TableRow>
           )}})}
         </TableBody>

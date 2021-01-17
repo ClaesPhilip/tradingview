@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import './News.css';
+import './News.scss';
 
 export interface INews {
     articles: any;
