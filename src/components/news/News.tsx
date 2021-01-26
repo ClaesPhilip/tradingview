@@ -66,6 +66,8 @@ import NewsItem from './NewsItem';
 import axios from 'axios';
 import { articleProps } from './types';
 
+// import CryptoLogo from './jobb.jpeg'; 
+
 const NewsListBlock = styled.div`
 	padding: 0.2rem 1rem 1rem 1rem;
 	background-color: rgb(245, 245, 245);
@@ -125,7 +127,7 @@ function NewsList({ category }: NewsListProps) {
 					description={article.description}
 					url={article.url}
 					urlToImage={article.urlToImage}
-          author={article.author}
+          			author={article.author}
 				/>
 			))}
 		</NewsListBlock>
