@@ -28,7 +28,7 @@ const Dashboard: React.FC = () => {
     
 
           <ul className="ulBox">
-            <li className="list"><Link to='/test'>Forum</Link></li>
+            <li className="list"><Link to='/forum'>Forum</Link></li>
             <li className="list"><Link to="/crypto">Cryptocurrency</Link></li>
             <li className="list"><Link to="/newspage">News</Link></li>
             <li className="list"><Link to='/test'>Lek</Link></li>
