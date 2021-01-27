@@ -15,7 +15,7 @@ import Loader from './components/UI/Loader';
 import firebase from './firebase/config';
 import { getUserById, setLoading, setNeedVerification } from './store/actions/authActions';
 import { RootState } from './store';
-import Test from './components/pages/test';
+import Forum from './components/chatForum/Forum';
 import Cryptocurrency from './components/crypto/crypto';
 import CryptoDetail from './components/crypto/CryptoDetail';
 import NewsPage from './components/news/NewsPage';
@@ -56,9 +56,9 @@ const App: FC = () => {
         <PublicRoute path="/signin" component={SignIn} exact />
         <PublicRoute path="/forgot-password" component={ForgotPassword} exact />
         <PrivateRoute path="/dashboard" component={Dashboard} exact />
-        <PrivateRoute path="/test" component={Test} exact />
         <PrivateRoute path="/crypto" component={Cryptocurrency} exact />
         <PrivateRoute path="/crypto/:id" component={CryptoDetail} />
+        <PrivateRoute path="/forum" component={Forum} />
         <PrivateRoute path='/:category?' component={NewsPage} />
       </Switch>
     </BrowserRouter>
