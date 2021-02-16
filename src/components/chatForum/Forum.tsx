@@ -55,9 +55,9 @@ function ChatRoom(){
   const messagesRef = firestore.collection('messages')
   const query = messagesRef.orderBy('createdAt').limit(25)
 
-  const [messages] : [Message[] | undefined, boolean, Error | undefined] = useCollectionData<Message>(query, {idField: 'id'})
+  const [messages] : [Message[] | undefined, boolean, Error | undefined] = useCollectionData<Message>(query, {idField: 'id'});
 
-  const [formValue, setFormValue] = React.useState('')
+  const [formValue, setFormValue] = React.useState<string>('');
 
   const dummy = React.useRef<HTMLDivElement>(null)
 
